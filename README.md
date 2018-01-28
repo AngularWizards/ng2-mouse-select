@@ -3,21 +3,12 @@ Angular 2 directive for selecting multiple items with the mouse
 
 ## Table of contents
 <ul>
-    <li>Installation</li>
-    <li>Description</li>
-    <li>Usage</li>
-    <li>Directives</li>
+     <li><a href="#Description">Description</a></li>
+    <li><a href="#Installation">Installation</a></li>
+    <li><a href="#Usage">Usage</a></li>
+    <li><a href="#Directives">Directives</a></li>
 </ul>
 
-
-
-## Installation
-
-To install this library, run:
-
-```bash
-$ npm install ng2-mouse-select --save
-```
 
 ## Description
 
@@ -37,15 +28,15 @@ This library has following features:
 - setting a 'selectable' directive to a component inside the 'app-selectFrame' enables you to define
   data which will be returned from the component after the selection (via the 'select' input).
 
-## Usage
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
+## Installation
+
 
 ```bash
 $ npm install ng2-mouse-select
 ```
 
-and then from your Angular Module:
+## Usage
 
 ```typescript
 
@@ -62,10 +53,8 @@ import { SelectableModule } from 'ng2-mouse-select';
 })
 ```
 
-Once your library is imported, you can use its components and directives and pipes in your Angular app:
-
 ```xml
-<!-- You can now use your library component in component.html -->
+<!-- You can now use your library component in some.component.html -->
 <!-- Example: -->
  <div app-selectFrame [ensureSame]="['property1','property2']" [clearOnUnselected]="false"
          [filter]="{ allowSelectElements: true, thisElement: true }" 
