@@ -3,10 +3,10 @@ Angular 2 directive for selecting multiple items with the mouse
 
 ## Table of contents
 <ul>
-     <li><a href="#Description">Description</a></li>
-    <li><a href="#Installation">Installation</a></li>
-    <li><a href="#Usage">Usage</a></li>
-    <li><a href="#Directives">Directives</a></li>
+     <li><a href="#description">Description</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#directives">Directives</a></li>
 </ul>
 
 
