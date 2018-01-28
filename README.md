@@ -1,6 +1,24 @@
 # ng2-mouse-select
 Angular 2 directive for selecting multiple items with the mouse
 
+## Table of contents
+<ul>
+    <li>Installation</li>
+    <li>Description</li>
+    <li>Usage</li>
+    <li>Directives</li>
+</ul>
+
+
+
+## Installation
+
+To install this library, run:
+
+```bash
+$ npm install ng2-mouse-select --save
+```
+
 ## Description
 
 This library has following features:
@@ -19,15 +37,7 @@ This library has following features:
 - setting a 'selectable' directive to a component inside the 'app-selectFrame' enables you to define
   data which will be returned from the component after the selection (via the 'select' input).
 
-## Installation
-
-To install this library, run:
-
-```bash
-$ npm install ng2-mouse-select --save
-```
-
-## Consuming your library
+## Usage
 
 Once you have published your library to npm, you can import your library in any Angular application by running:
 
@@ -71,6 +81,39 @@ Once your library is imported, you can use its components and directives and pip
 </div>
 
 ```
+
+## Directives
+
+#### app-selectFrame directive
+
+`app-selectFrame` - component that holds the selectable components/directives.
+
+###### Inputs
+
+`ensureSame`:`Array<string>` - array of properties. When defined, only those items are selectable, which have the same properties and the same value as the first selected item. 
+
+`clearOnUnselected`:`boolean` - default false. When true, selection is cleared also when user clicks on selectable but unselected items. Normally, selection is cleared as soon as the user clicks away from the selectable item(s). 
+
+`filter`:`{ allowSelectElements: boolean, thisElement: boolean }` - On default behaviour, selection is active on the document. However, often it is the case, that we want to exclude the selection directive on some items. 
+
+With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
+Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enalbed with `appAllowSelect`.
+
+###### Events 
+
+`data:Array<any>` - Data which is returned on the end of the selection. If nothing was selected, [] is returned. 
+
+
+#### appAllowSelect directive
+
+Allows a selection on the HTML element, when `filter` option is used.
+
+
+#### selectable directive
+
+###### Inputs
+
+`select` - here you can set the the object(s) you want to pass with the selection. See one example above.
 
 ## License
 
