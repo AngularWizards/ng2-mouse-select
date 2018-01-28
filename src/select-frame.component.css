@@ -1,0 +1,7 @@
+.selector-frame {
+    position: absolute;
+    background: #fac656;
+    opacity: 0.5;
+    border: 1px dotted black;
+    z-index: 99000;
+}

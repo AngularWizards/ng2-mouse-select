@@ -1,0 +1,563 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng2-mouse-select</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng2-mouse-select</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../index.html">ng2-mouse-select</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                                <li class="link">
+                                  <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../modules.html" >
+                            <div class="menu-toggler linked" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse "
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/SelectableModule.html"  data-type="entity-link" class="active" >SelectableModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SelectFrameComponent.html" >SelectFrameComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-directives-links"
+                            >
+                            <span class="fa fa-code"></span>
+                            <span>Directives</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-directives-links"
+                            >
+                                <li class="link">
+                                    <a href="../directives/AllowSelectDirective.html" >AllowSelectDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../directives/SelectableDirective.html" >SelectableDirective</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/ISelectFrame.html" >ISelectFrame</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ISelectionCoordinates.html" >ISelectionCoordinates</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../index.html">ng2-mouse-select</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../modules.html" >
+                                   <div class="menu-toggler linked" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
+                               </a>
+                               <ul class="links collapse "
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/SelectableModule.html"  data-type="entity-link" class="active" >SelectableModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SelectFrameComponent.html" >SelectFrameComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#directives-links"
+                   >
+                                   <span class="fa fa-code"></span>
+                                   <span>Directives</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="directives-links"
+                   >
+                                       <li class="link">
+                                           <a href="../directives/AllowSelectDirective.html" >AllowSelectDirective</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../directives/SelectableDirective.html" >SelectableDirective</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/ISelectFrame.html" >ISelectFrame</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ISelectionCoordinates.html" >ISelectionCoordinates</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+  <li>Modules</li>
+  <li>SelectableModule</li>
+</ol>
+
+      <div class="text-center module-graph-container">
+          <div id="module-graph-svg">
+              <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="516pt" height="284pt"
+ viewBox="0.00 0.00 516.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-280 512,-280 512,4 -4,4"/>
+<text text-anchor="start" x="233.0091" y="-42.4" font-family="sans-serif" font-weight="bold" font-size="14.00" fill="#000000">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="20,-10 20,-30 40,-30 40,-10 20,-10"/>
+<text text-anchor="start" x="43.629" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="133,-10 133,-30 153,-30 153,-10 133,-10"/>
+<text text-anchor="start" x="156.7251" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="219,-10 219,-30 239,-30 239,-10 219,-10"/>
+<text text-anchor="start" x="242.7812" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="316,-10 316,-30 336,-30 336,-10 316,-10"/>
+<text text-anchor="start" x="339.6732" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="412,-10 412,-30 432,-30 432,-10 412,-10"/>
+<text text-anchor="start" x="435.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_SelectableModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="8,-70 8,-268 500,-268 500,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SelectableModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="21,-78 21,-130 487,-130 487,-78 21,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_SelectableModule_exports</title>
+<polygon fill="none" stroke="#000000" points="16,-208 16,-260 492,-260 492,-208 16,-208"/>
+</g>
+<!-- SelectFrameComponent -->
+<g id="node1" class="node">
+<title>SelectFrameComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="478.8033,-122 327.1967,-122 327.1967,-86 478.8033,-86 478.8033,-122"/>
+<text text-anchor="middle" x="403" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">SelectFrameComponent</text>
+</g>
+<!-- SelectableModule -->
+<g id="node4" class="node">
+<title>SelectableModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="305.5772,-187 302.5772,-191 281.5772,-191 278.5772,-187 188.4228,-187 188.4228,-151 305.5772,-151 305.5772,-187"/>
+<text text-anchor="middle" x="247" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">SelectableModule</text>
+</g>
+<!-- SelectFrameComponent&#45;&gt;SelectableModule -->
+<g id="edge1" class="edge">
+<title>SelectFrameComponent&#45;&gt;SelectableModule</title>
+<path fill="none" stroke="#000000" d="M428.9672,-122.0225C428.9672,-139.3734 428.9672,-163 428.9672,-163 428.9672,-163 315.5772,-163 315.5772,-163"/>
+<polygon fill="#000000" stroke="#000000" points="315.5772,-159.5001 305.5772,-163 315.5772,-166.5001 315.5772,-159.5001"/>
+</g>
+<!-- SelectableDirective -->
+<g id="node2" class="node">
+<title>SelectableDirective</title>
+<polygon fill="#ffffb3" stroke="#000000" points="309.6108,-122 184.3892,-122 184.3892,-86 309.6108,-86 309.6108,-122"/>
+<text text-anchor="middle" x="247" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">SelectableDirective</text>
+</g>
+<!-- SelectableDirective&#45;&gt;SelectableModule -->
+<g id="edge2" class="edge">
+<title>SelectableDirective&#45;&gt;SelectableModule</title>
+<path fill="none" stroke="#000000" d="M247,-122.1061C247,-122.1061 247,-140.991 247,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="243.5001,-140.9909 247,-150.991 250.5001,-140.991 243.5001,-140.9909"/>
+</g>
+<!-- AllowSelectDirective -->
+<g id="node3" class="node">
+<title>AllowSelectDirective</title>
+<polygon fill="#ffffb3" stroke="#000000" points="166.7851,-122 29.2149,-122 29.2149,-86 166.7851,-86 166.7851,-122"/>
+<text text-anchor="middle" x="98" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">AllowSelectDirective</text>
+</g>
+<!-- AllowSelectDirective&#45;&gt;SelectableModule -->
+<g id="edge3" class="edge">
+<title>AllowSelectDirective&#45;&gt;SelectableModule</title>
+<path fill="none" stroke="#000000" d="M119.3808,-122.0225C119.3808,-139.3734 119.3808,-163 119.3808,-163 119.3808,-163 178.4196,-163 178.4196,-163"/>
+<polygon fill="#000000" stroke="#000000" points="178.4196,-166.5001 188.4196,-163 178.4195,-159.5001 178.4196,-166.5001"/>
+</g>
+<!-- SelectFrameComponent  -->
+<g id="node5" class="node">
+<title>SelectFrameComponent </title>
+<polygon fill="#fb8072" stroke="#000000" points="484.3031,-252 329.6969,-252 329.6969,-216 484.3031,-216 484.3031,-252"/>
+<text text-anchor="middle" x="407" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">SelectFrameComponent </text>
+</g>
+<!-- SelectableModule&#45;&gt;SelectFrameComponent  -->
+<g id="edge4" class="edge">
+<title>SelectableModule&#45;&gt;SelectFrameComponent </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M305.7915,-175C341.121,-175 379.2828,-175 379.2828,-175 379.2828,-175 379.2828,-205.9775 379.2828,-205.9775"/>
+<polygon fill="#000000" stroke="#000000" points="375.7829,-205.9774 379.2828,-215.9775 382.7829,-205.9775 375.7829,-205.9774"/>
+</g>
+<!-- SelectableDirective  -->
+<g id="node6" class="node">
+<title>SelectableDirective </title>
+<polygon fill="#fb8072" stroke="#000000" points="311.6102,-252 182.3898,-252 182.3898,-216 311.6102,-216 311.6102,-252"/>
+<text text-anchor="middle" x="247" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">SelectableDirective </text>
+</g>
+<!-- SelectableModule&#45;&gt;SelectableDirective  -->
+<g id="edge5" class="edge">
+<title>SelectableModule&#45;&gt;SelectableDirective </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M247,-187.1061C247,-187.1061 247,-205.991 247,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="243.5001,-205.9909 247,-215.991 250.5001,-205.991 243.5001,-205.9909"/>
+</g>
+<!-- AllowSelectDirective  -->
+<g id="node7" class="node">
+<title>AllowSelectDirective </title>
+<polygon fill="#fb8072" stroke="#000000" points="164.285,-252 23.715,-252 23.715,-216 164.285,-216 164.285,-252"/>
+<text text-anchor="middle" x="94" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AllowSelectDirective </text>
+</g>
+<!-- SelectableModule&#45;&gt;AllowSelectDirective  -->
+<g id="edge6" class="edge">
+<title>SelectableModule&#45;&gt;AllowSelectDirective </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M188.0731,-175C138.0633,-175 74.3692,-175 74.3692,-175 74.3692,-175 74.3692,-205.9775 74.3692,-205.9775"/>
+<polygon fill="#000000" stroke="#000000" points="70.8693,-205.9774 74.3692,-215.9775 77.8693,-205.9775 70.8693,-205.9774"/>
+</g>
+</g>
+</svg>
+
+          </div>
+          <i id="fullscreen" class="fa fa-expand module-graph-fullscreen-btn" aria-hidden="true"></i>
+          <div class="btn-group">
+              <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+              <button id="reset" class="btn btn-default btn-sm">Reset</button>
+              <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+          </div>
+      </div>
+      <script src="../js/libs/svg-pan-zoom.min.js"></script>
+      <script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+
+
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/index.ts</code>
+        </p>
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" title="Official documentation about module declarations"><span class="fa fa-info-circle"></span></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../components/SelectFrameComponent.html">SelectFrameComponent</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="../directives/SelectableDirective.html">SelectableDirective</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="../directives/AllowSelectDirective.html">AllowSelectDirective</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../components/SelectFrameComponent.html" >SelectFrameComponent</a>
+                            </li>
+                            <li class="list-group-item">
+                                    <a href="../directives/SelectableDirective.html" >SelectableDirective</a>
+                            </li>
+                            <li class="list-group-item">
+                                    <a href="../directives/AllowSelectDirective.html" >AllowSelectDirective</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade tab-source-code" id="c-source">
+        <pre class="line-numbers"><code class="language-typescript">import { NgModule, ModuleWithProviders } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { SelectFrameComponent } from &#x27;./select-frame.component&#x27;;
+import { SelectableDirective } from &#x27;./selectable.directive&#x27;;
+import { AllowSelectDirective } from &#x27;./allow.select.directive&#x27;;
+
+export * from &#x27;./select-frame.component&#x27;;
+export * from &#x27;./selectable.directive&#x27;;
+export * from &#x27;./allow.select.directive&#x27;;
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    SelectFrameComponent,
+    SelectableDirective,
+    AllowSelectDirective
+  ],
+  exports: [
+    SelectFrameComponent,
+    SelectableDirective,
+    AllowSelectDirective
+  ]
+})
+export class SelectableModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SelectableModule,
+      providers: []
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 1;</script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+    </body>
+</html>
