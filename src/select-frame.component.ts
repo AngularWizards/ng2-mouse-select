@@ -40,7 +40,7 @@ export class SelectFrameComponent {
     private mouseUpListener: Function;
     private tempData: Array<any> = [];
     @Input() ensureSame: Array<string> = [];
-    @Input() filter: { allowSelectElements: false, thisElement: false } = null;
+    @Input() filter: { allowSelectElements: boolean, thisElement: boolean } = null;
     @Input() clearOnUnselected = false;
     @Input() selectClass = 'select-border';
     @Input() selectHandleClass = 'select-handle';
@@ -200,16 +200,18 @@ export class SelectFrameComponent {
     //#region selection
 
     private prepareStartSelection(ev: MouseEvent) {
+        // actions indepentent of allowing selection
         this.setStartCoordinates(ev);
         const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
         this.resetComponents(frame, this.selectableDirectives.toArray());
         this.resetListeners();
-
     }
     private StartSelection(ev: MouseEvent): boolean {
         // do nothing if start selection filter active
         // and element is not a member of the filter elements
         if (!this.allowSelectionOnElements(ev)) return;
+        // new selection - clear tmpData
+        this.tempData = [];
         this.mouseDown = true;
         this.startListeners();
         ev.stopPropagation();
@@ -226,12 +228,12 @@ export class SelectFrameComponent {
         if (this.ensureSame.length === 0 || this.tempData.length === 0) this.selectComponents(frame, directives);
         else this.filterComponents(frame, directives);
         if (this.tempData.length === 0)
-        this.selectableDirectives.map(x => {
-            if (this.tempData.length === 0) {
-                const data = x.getDataIfSelected();
-                if (data) this.tempData.push(data);
-            }
-        });
+            this.selectableDirectives.map(x => {
+                if (this.tempData.length === 0) {
+                    const data = x.getDataIfSelected();
+                    if (data) this.tempData.push(data);
+                }
+            });
     }
 
     private getSelectedData(): Array<any> {
@@ -272,7 +274,7 @@ export class SelectFrameComponent {
         if (this.filter == null) return true;
         const element = document.elementFromPoint(ev.clientX, ev.clientY);
         let result = false;
-        if (this.filter.allowSelectElements)
+        if (this.filter.allowSelectElements === true)
             result = (element.hasAttribute('allow-select'));
         if (this.filter.thisElement)
             result = result || (element === this.el.nativeElement);
