@@ -61,7 +61,7 @@ Once your library is imported, you can use its components and directives and pip
          [filter]="{ allowSelectElements: true, thisElement: true }" 
          (data)="onMousePalletsSelected($event)">
 
-<div class="col-md-6" appAllowSelect>
+<div appAllowSelect>
 ....
  <tr some-component [someClass]="someClass" 
      selectable
