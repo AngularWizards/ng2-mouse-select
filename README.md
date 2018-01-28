@@ -14,18 +14,18 @@ Angular 2 directive for selecting multiple items with the mouse
 
 This library has following features:
 
-- 'app-selectFrame' - component within which you can define selectable components
-  with the help of 'selectable' directives. (example down)
+- `app-selectFrame` - component within which you can define selectable components
+  with the help of `selectable` directives. (example down)
 
-- allows filtering of selection based on configurable properties with the use of 'ensureSame' input (so that only items with the same value(s) of these properties get selected).
+- allows filtering of selection based on configurable properties with the use of `ensureSame` input (so that only items with the same value(s) of these properties get selected).
 
-- preserves selection till clicked away from the 'selectable' items. If 'clearOnUnselected' option is used, selection is also canceled when clicking on previously unselected 'selectable' items.
+- preserves selection till clicked away from the `selectable` items. If `clearOnUnselected` option is used, selection is also canceled when clicking on previously unselected `selectable` items.
 
-- with the configuration of the 'filter' you can determine on which elements will the directive be active, that is, on which elements can you start the selection
+- with the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements can you start the selection
   (for instance, you can configure the selection to be active just on the app-selectFrame, or you can add
-  'appAllowSelect' directive to every element on which you want the selection to be active).
+  `appAllowSelect` directive to every element on which you want the selection to be active).
 
-- setting a 'selectable' directive to a component inside the 'app-selectFrame' enables you to define
+- setting a `selectable` directive to a component inside the `app-selectFrame` enables you to define
   data which will be returned from the component after the selection (via the 'select' input).
 
 
@@ -73,11 +73,11 @@ import { SelectableModule } from 'ng2-mouse-select';
 
 ## Directives
 
-#### app-selectFrame directive
+### app-selectFrame directive
 
 `app-selectFrame` - component that holds the selectable components/directives.
 
-###### Inputs
+#### Inputs
 
 `ensureSame`:`Array<string>` - array of properties. When defined, only those items are selectable, which have the same properties and the same value as the first selected item. 
 
@@ -88,19 +88,19 @@ import { SelectableModule } from 'ng2-mouse-select';
 With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
 Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enalbed with `appAllowSelect`.
 
-###### Events 
+#### Events 
 
 `data:Array<any>` - Data which is returned on the end of the selection. If nothing was selected, [] is returned. 
 
 
-#### appAllowSelect directive
+### appAllowSelect directive
 
 Allows a selection on the HTML element, when `filter` option is used.
 
 
-#### selectable directive
+### selectable directive
 
-###### Inputs
+#### Inputs
 
 `select` - here you can set the the object(s) you want to pass with the selection. See one example above.
 
