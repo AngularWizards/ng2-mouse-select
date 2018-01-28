@@ -2,16 +2,16 @@ import { Directive, ElementRef, Renderer2 } from '@angular/core';
 /**
  * @description
  * directive for items inside the 'select-frame' * component.
- * 
+ *
  * Start of selection is allowed on elements with these directive,
- * if filter on  'select-frame' component is set on 
+ * if filter on  'select-frame' component is set on
  * 'allowSelectElements'.
  *
- * 
+ *
  * @example
- * 
+ *
  * <div appAllowSelect></div>
- * 
+ *
  * @export
  * @class AllowSelectDirective
  */
