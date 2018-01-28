@@ -10,9 +10,17 @@
     "email": "miro1.kovac@gmail.com"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "mouse-select",
+    "select",
+    "angular2"
   ],
-  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/MiroKov/ng2-mouse-select/blob/master/LICENSE"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/MiroKov/ng2-mouse-select.git/issues"
   },
