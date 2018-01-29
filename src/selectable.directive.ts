@@ -23,6 +23,7 @@ export class SelectableDirective {
     private _data: any;
     private selected: boolean;
     @Input() selectedClass = 'selected';
+    @Input() selectScope = '';
 
     @Input('select')
     public set data(value: any) {
@@ -61,8 +62,9 @@ export class SelectableDirective {
         if (!this.selected) return null;
         return this.getData();
     }
-    private getData(): any {
-        return JSON.parse(this.data);
+    private getData(intern?: boolean): any {
+        if (this.selectScope === '' || intern) return JSON.parse(this.data);
+        return { scope: this.selectScope, data: JSON.parse(this.data) };
     }
     public select(selectFrame: ISelectFrame, filter?: Array<any>): void {
         if (selectFrame == null) return this.processUnSelect(this.selectedClass);
@@ -88,9 +90,11 @@ export class SelectableDirective {
     }
     private passedFilter(filter?: Array<any>): boolean {
         if (!filter) return true;
+        console.log('filter!!!');
+        console.log(filter);
         let passed = true;
         for (const name in filter) {
-            if (filter[name] !== this.getData()[name])
+            if (filter[name] !== this.getData(true)[name])
                 passed = false;
         }
 

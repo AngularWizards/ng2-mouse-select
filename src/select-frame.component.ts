@@ -38,7 +38,7 @@ export class SelectFrameComponent {
     private mouseMoveListener: Function;
     private scrollListener: Function;
     private mouseUpListener: Function;
-    private tempData: Array<any> = [];
+    private tempData: Array<any> | any = [];
     @Input() ensureSame: Array<string> = [];
     @Input() filter: { allowSelectElements: boolean, thisElement: boolean } = null;
     @Input() clearOnUnselected = false;
@@ -225,13 +225,24 @@ export class SelectFrameComponent {
     }
 
     private determineSelected(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
-        if (this.ensureSame.length === 0 || this.tempData.length === 0) this.selectComponents(frame, directives);
+        console.log('this.tempData');
+        console.log(this.tempData);
+        console.log('this.tempData.length');
+        console.log(this.tempData.length);
+        if (this.ensureSame.length === 0 || Object.keys(this.tempData).length === 0) this.selectComponents(frame, directives);
         else this.filterComponents(frame, directives);
         if (this.tempData.length === 0)
             this.selectableDirectives.map(x => {
-                if (this.tempData.length === 0) {
+                if (Object.keys(this.tempData).length === 0) {
                     const data = x.getDataIfSelected();
-                    if (data) this.tempData.push(data);
+                    if (data) {
+                        if (data.scope) {
+                            if (!this.tempData[data.scope])
+                                this.tempData[data.scope] = [];
+                            this.tempData[data.scope].push(data.data);
+                        } else
+                            this.tempData.push(data);
+                    }
                 }
             });
     }
@@ -240,15 +251,29 @@ export class SelectFrameComponent {
         const returnData = [];
         this.selectableDirectives.map(x => {
             const data = x.getDataIfSelected();
-            if (data)
-                returnData.push(data);
+            if (data) {
+                if (data.scope) {
+                    if (!returnData[data.scope])
+                        returnData[data.scope] = [];
+                    returnData[data.scope].push(data.data);
+                } else
+                    returnData.push(data);
+            }
         });
         return returnData;
     }
     private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
         const filter = [];
+        const scope = Object.keys(this.tempData)[0];
+        console.log('keys');
+        console.log(scope);
+        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
+        console.log('filterData');
+        console.log(filterData);
+        console.log(this.tempData[scope]);
+        console.log('end -filterData');
         this.ensureSame.forEach((x) => {
-            filter[x] = this.tempData[0][x];
+            filter[x] = filterData[x];
         });
         this.selectableDirectives.map(x => x.select(frame, filter));
     }
