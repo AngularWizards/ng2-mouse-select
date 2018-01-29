@@ -4,6 +4,7 @@ Angular 2 directive for selecting multiple items with the mouse
 ## Table of contents
 <ul>
      <li><a href="#description">Description</a></li>
+     <li><a href="#description">Issues</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#directives">Directives</a></li>
@@ -24,6 +25,7 @@ This library has following features:
 - with the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements can you start the selection
   (for instance, you can configure the selection to be active just on the app-selectFrame, or you can add
   `appAllowSelect` directive to every element on which you want the selection to be active).
+   With this you can enable other directives on these elements (i.e. drag-n-drop).
 
 - setting a `selectable` directive to a component inside the `app-selectFrame` enables you to define
   data which will be returned from the component after the selection (via the 'select' input).
@@ -35,6 +37,10 @@ This library has following features:
 ```bash
 $ npm install ng2-mouse-select
 ```
+
+## Issues
+
+Does not work in IE.
 
 ## Usage
 
@@ -96,6 +102,11 @@ Setting `thisElement:true` sets just the `app-selectFrame` as the area within wh
 ### appAllowSelect directive
 
 Allows a selection on the HTML element, when `filter` option is used.
+
+
+### noSelect directive
+
+Blocks text-selection from the element and its descendants.
 
 
 ### selectable directive
