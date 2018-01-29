@@ -104,6 +104,8 @@ Allows a selection on the HTML element, when `filter` option is used.
 
 `select` - here you can set the the object(s) you want to pass with the selection. See one example above.
 
+`selectedClass` - default 'selected'. Here you set the name of the class that will style your `selectable` directive when it is selected.
+
 ## License
 
 MIT © [Miroslav Kovac](mailto:miro1.kovac@gmail.com)

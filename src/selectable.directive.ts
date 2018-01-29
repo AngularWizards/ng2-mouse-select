@@ -4,13 +4,13 @@ import { ISelectFrame } from './ISelectorFrame';
  * @description
  *  directive for items inside the 'select-frame'
  *  component with the corresponding Select input which regulates the data sent(JSON object).
- * 
+ *
  * @example
- * 
+ *
  * <div selectable></div>
- * 
+ *
  * [Select]="{'palletId':pallet.Id,'GLN':pallet.AmazonWarehouseGLN,'ShippingType':pallet.ShippingType}"
- * 
+ * [selectedClass]='selected'
  * @export
  * @class SelectableDirective
  */
