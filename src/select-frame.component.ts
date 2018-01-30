@@ -121,8 +121,8 @@ export class SelectFrameComponent {
     }
 
     private refreshScrollCoordinates(): void {
-        this.selectionFrameCoordinates.endScrollX = window.scrollX;
-        this.selectionFrameCoordinates.endScrollY = window.scrollY;
+        this.selectionFrameCoordinates.endScrollX = window.pageXOffset;
+        this.selectionFrameCoordinates.endScrollY = window.pageYOffset;
     }
 
     private setStartFrameCoordinates(ev: MouseEvent) {
@@ -131,10 +131,10 @@ export class SelectFrameComponent {
             startY: ev.clientY,
             endX: ev.clientX,
             endY: ev.clientY,
-            startScrollX: window.scrollX,
-            startScrollY: window.scrollY,
-            endScrollX: window.scrollX,
-            endScrollY: window.scrollY
+            startScrollX: window.pageXOffset,
+            startScrollY: window.pageYOffset,
+            endScrollX: window.pageXOffset,
+            endScrollY: window.pageYOffset
         }
     }
 
