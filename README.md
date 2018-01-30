@@ -42,7 +42,8 @@ $ npm install ng2-mouse-select
 
 ## Issues
 
-Does not work in IE.
+Versions before 0.4.1 did not work in IE.
+
 
 ## Usage
 
