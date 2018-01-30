@@ -18,7 +18,6 @@ import { ISelectFrame } from './ISelectorFrame';
 
 
 export class SelectableDirective {
-
     private dimensions: ISelectFrame;
     private _data: any;
     private selected: boolean;
@@ -66,8 +65,9 @@ export class SelectableDirective {
         if (this.selectScope === '' || intern) return JSON.parse(this.data);
         return { scope: this.selectScope, data: JSON.parse(this.data) };
     }
-    public select(selectFrame: ISelectFrame, filter?: Array<any>): void {
+    public select(selectFrame: ISelectFrame, filter?: Array<any>, scope?: string): void {
         if (selectFrame == null) return this.processUnSelect(this.selectedClass);
+        if (!this.passedScope(scope)) return this.processUnSelect(this.selectedClass);
         if (!this.passedFilter(filter)) return this.processUnSelect(this.selectedClass);
         if
         (
@@ -90,8 +90,6 @@ export class SelectableDirective {
     }
     private passedFilter(filter?: Array<any>): boolean {
         if (!filter) return true;
-        console.log('filter!!!');
-        console.log(filter);
         let passed = true;
         for (const name in filter) {
             if (filter[name] !== this.getData(true)[name])
@@ -99,6 +97,10 @@ export class SelectableDirective {
         }
 
         return passed;
+    }
+    passedScope(scope?: string): any {
+        if (!scope) return true;
+        return (scope === this.selectScope);
     }
     constructor(private el: ElementRef, private renderer: Renderer2) { }
 }

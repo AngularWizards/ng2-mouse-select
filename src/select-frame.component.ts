@@ -225,10 +225,6 @@ export class SelectFrameComponent {
     }
 
     private determineSelected(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
-        console.log('this.tempData');
-        console.log(this.tempData);
-        console.log('this.tempData.length');
-        console.log(this.tempData.length);
         if (this.ensureSame.length === 0 || Object.keys(this.tempData).length === 0) this.selectComponents(frame, directives);
         else this.filterComponents(frame, directives);
         if (this.tempData.length === 0)
@@ -264,18 +260,13 @@ export class SelectFrameComponent {
     }
     private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
         const filter = [];
-        const scope = Object.keys(this.tempData)[0];
-        console.log('keys');
-        console.log(scope);
+        let scope = Object.keys(this.tempData)[0];
         const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
-        console.log('filterData');
-        console.log(filterData);
-        console.log(this.tempData[scope]);
-        console.log('end -filterData');
         this.ensureSame.forEach((x) => {
             filter[x] = filterData[x];
         });
-        this.selectableDirectives.map(x => x.select(frame, filter));
+        scope = (+scope === 0) ? null : scope;
+        this.selectableDirectives.map(x => x.select(frame, filter, scope));
     }
 
     private selectComponents(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
