@@ -8,6 +8,7 @@ Angular 2 directive for selecting multiple items with the mouse
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#directives">Directives</a></li>
+    <li><a href="#scoping">Scoping</a></li>
 </ul>
 
 
@@ -28,7 +29,8 @@ This library has following features:
    With this you can enable other directives on these elements (i.e. drag-n-drop).
 
 - setting a `selectable` directive to a component inside the `app-selectFrame` enables you to define
-  data which will be returned from the component after the selection (via the 'select' input).
+  data which will be returned from the component after the selection (via the 'select' input). 
+  As of version 0.4, <a href="#scoping">scoping</a> is supported.
 
 
 ## Installation
@@ -69,7 +71,7 @@ import { SelectableModule } from 'ng2-mouse-select';
 <div appAllowSelect>
 ....
  <tr some-component [someClass]="someClass" 
-     selectable
+     selectable [selectScope]="something"
      [select]="{'property1':someClass.data1,'property2':someClass.data2}">
   </tr>
 ....
@@ -92,11 +94,14 @@ import { SelectableModule } from 'ng2-mouse-select';
 `filter`:`{ allowSelectElements: boolean, thisElement: boolean }` - On default behaviour, selection is active on the document. However, often it is the case, that we want to exclude the selection directive on some items. 
 
 With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
-Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enalbed with `appAllowSelect`.
+Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enabled with `appAllowSelect`.
 
 #### Events 
 
 `data:Array<any>` - Data which is returned on the end of the selection. If nothing was selected, [] is returned. 
+
+As of version, scoping is enabled. If you are using scope, outputed data changes format. See the section on <a href="#scoping">scoping</a>.
+
 
 
 ### appAllowSelect directive
@@ -116,6 +121,24 @@ Blocks text-selection from the element and its descendants.
 `select` - here you can set the the object(s) you want to pass with the selection. See one example above.
 
 `selectedClass` - default 'selected'. Here you set the name of the class that will style your `selectable` directive when it is selected.
+
+`selectedScope` - default null. See section on <a href="#scoping">scoping</a>.
+
+
+## Scoping
+
+As of version 0.4. scoping is supported. That means that selectable items are grouped based on scope. When enabled, only elements with the same scope can come into selection. This is done on the level of the selectable items.
+When used, data that you get back gets a bit changed.
+For instance, if before scoping, to get your data, you used: 
+
+```typescript
+data=ev;
+```
+, with the `'pallets'` scope you would write:
+
+```typescript
+data=ev[pallets];
+```
 
 ## License
 
