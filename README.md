@@ -66,8 +66,9 @@ import { SelectableModule } from 'ng2-mouse-select';
 
 <div appAllowSelect>
 ....
- <tr some-component [someClass]="someClass" 
-     selectable [selectScope]="'someScope'"
+ <tr some-component  
+     selectable [selectScope]="'someScope'"  [selectedClass]="'mySpecialClassNameForSelectedItems'" 
+     [someClassAsInputForTheComponent]="someClass"
      [select]="{'property1':someClass.data1,'property2':someClass.data2}">
   </tr>
 ....
