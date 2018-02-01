@@ -15,21 +15,20 @@ Angular 2 directive for selecting multiple items with the mouse
 
 This library has following features:
 
-- `app-selectFrame` - component within which you can define selectable components
-  with the help of `selectable` directives. (example down)
+- Adding user-specific class(es) to selected items.
 
-- allows filtering of selection based on configurable properties with the use of `ensureSame` input (so that only items with the same value(s) of these properties get selected).
+- Works well with other directives, i.e. drag&drop.
 
-- preserves selection till clicked away from the `selectable` items. If `clearOnUnselected` option is used, selection is also canceled when clicking on previously unselected `selectable` items.
+- Preserves selection till clicked away from the `selectable` items.
+  If `clearOnUnselected` option is used, selection is also canceled when clicking on previously unselected, but also `selectable` items.
 
-- with the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements can you start the selection
-  (for instance, you can configure the selection to be active just on the app-selectFrame, or you can add
-  `appAllowSelect` directive to every element on which you want the selection to be active).
-   With this you can enable other directives on these elements (i.e. drag-n-drop).
+- With the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements will the selection be started. (Useful for enabling other directives on items that need other behaviour, like drag&drop).
+  
+- As of version 0.4, <a href="#scoping">scoping</a> is supported. In this case, only items with the scope of the first selected items get in the selection.
 
-- setting a `selectable` directive to a component inside the `app-selectFrame` enables you to define
-  data which will be returned from the component after the selection (via the 'select' input). 
-  As of version 0.4, <a href="#scoping">scoping</a> is supported.
+- Able to ensure sameness. If `ensureSame` is used, only items with the same properties and corresponding values as those from the first selected item get in the selection.
+
+- Able to change color of the selector frame dynamically.
 
 
 ## Installation
@@ -93,7 +92,7 @@ import { SelectableModule } from 'ng2-mouse-select';
 With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
 Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enabled with `appAllowSelect`.
 
-`selectorColor` - Default yellow. Is also possible to dynamically change the color of the selector frame.
+`selectorColor` - Default yellow. Dynamically changeable.
 
 #### Events 
 
