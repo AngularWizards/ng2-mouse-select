@@ -24,7 +24,7 @@ This library has following features:
 
 - With the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements will the selection be started. (Useful for enabling other directives on items that need other behaviour, like drag&drop).
   
-- As of version 0.4, <a href="#scoping">scoping</a> is supported. In this case, only items with the scope of the first selected items get in the selection.
+- As of version 0.4, <a href="#scoping">scoping</a> is supported. In this case, only items with the scope of the first selected item get in the selection.
 
 - Able to ensure sameness. If `ensureSame` is used, only items with the same properties and corresponding values as those from the first selected item get in the selection.
 
@@ -83,14 +83,16 @@ import { SelectableModule } from 'ng2-mouse-select';
 
 #### Inputs
 
-`ensureSame`:`Array<string>` - array of properties. When defined, only those items are selectable, which have the same properties and the same value as the first selected item. 
+`ensureSame`:`Array<string>` - array of properties. When defined, only those items are selectable, which have the same properties and the same corresponding values as the first item that was selected. 
 
-`clearOnUnselected`:`boolean` - default false. When true, selection is cleared also when user clicks on selectable but unselected items. Normally, selection is cleared as soon as the user clicks away from the selectable item(s). 
+`clearOnUnselected`:`boolean` - default false. When true, selection is cleared also when user clicks on selectable but unselected items. Normally, selection is cleared only when the user clicks away from the selectable item(s). 
 
-`filter`:`{ allowSelectElements: boolean, thisElement: boolean }` - On default behaviour, selection is active on the document. However, often it is the case, that we want to exclude the selection directive on some items. 
+`filter`:`{ allowSelectElements: boolean, thisElement: boolean }` - On default behaviour, selection is active on the document. However, sometimes we want to exclude the selection directive on some items, so that other directives can do their work. 
 
 With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
-Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enabled with `appAllowSelect`.
+Setting `thisElement:true` sets just the `app-selectFrame` as the element on which the selection is available.
+Elements that were enabled with `appAllowSelect` get added to the list of element on which the selection gets started.
+
 
 `selectorColor` - Default yellow. Dynamically changeable.
 
