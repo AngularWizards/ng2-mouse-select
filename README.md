@@ -59,7 +59,9 @@ import { SelectableModule } from 'ng2-mouse-select';
 ```xml
 <!-- You can now use your library component in some.component.html -->
 <!-- Example: -->
- <div app-selectFrame [ensureSame]="['property1','property2']" [clearOnUnselected]="false"
+ <div app-selectFrame [selectorColor]="#CC0000"
+         [ensureSame]="['property1','property2']" 
+         [clearOnUnselected]="false"
          [filter]="{ allowSelectElements: true, thisElement: true }" 
          (data)="onMousePalletsSelected($event)">
 
@@ -90,6 +92,8 @@ import { SelectableModule } from 'ng2-mouse-select';
 
 With `allowSelectElements:true` we say that the selection is enabled on all elements with `appAllowSelect` directive. 
 Setting `thisElement:true` sets just the `app-selectFrame` as the area within which the selection is available. It does not exclude elements that were enabled with `appAllowSelect`.
+
+`selectorColor` - Default yellow. Is also possible to dynamically change the color of the selector frame.
 
 #### Events 
 
