@@ -1,9 +1,10 @@
 import {
     Component, ElementRef, Renderer2, QueryList, ContentChildren,
-    Input, HostListener, HostBinding, Output, EventEmitter, NgZone, AfterContentInit, ViewChild
+    Input, HostListener, HostBinding, Output, EventEmitter, NgZone, ViewChild, SimpleChanges
 } from '@angular/core';
 import { ISelectionCoordinates, ISelectFrame } from './ISelectorFrame';
 import { SelectableDirective } from './selectable.directive';
+import { AfterViewInit, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 /**
  * @description
  * Component which defines frame for the selection area.
@@ -27,7 +28,7 @@ import { SelectableDirective } from './selectable.directive';
     styleUrls: ['./select-frame.component.css'],
     templateUrl: './select-frame.component.html'
 })
-export class SelectFrameComponent {
+export class SelectFrameComponent implements AfterViewInit, OnChanges {
     public selectables: Array<any>;
     public hasChildren = false;
     public enabled = true;
@@ -42,8 +43,7 @@ export class SelectFrameComponent {
     @Input() ensureSame: Array<string> = [];
     @Input() filter: { allowSelectElements: boolean, thisElement: boolean } = null;
     @Input() clearOnUnselected = false;
-    @Input() selectClass = 'select-border';
-    @Input() selectHandleClass = 'select-handle';
+    @Input() selectorColor = 'defaultYellow';
     @Output() data: EventEmitter<any> = new EventEmitter<Array<any>>();
     @ViewChild('selectorFrame') selector: ElementRef;
     @ContentChildren(SelectableDirective, { descendants: true }) selectableDirectives: QueryList<SelectableDirective>;
@@ -81,6 +81,7 @@ export class SelectFrameComponent {
         this.drawRectangle(this.getFrameRelativeToParent(frame, this.parent));
         this.determineSelected(frame, this.selectableDirectives.toArray());
     }
+
 
     //#endregion Listeners
 
@@ -299,7 +300,15 @@ export class SelectFrameComponent {
 
     //#endregion selection
 
-    constructor(public el: ElementRef, private renderer: Renderer2, private zone: NgZone) {
+    ngAfterViewInit(): void {
+        if (this.selectorColor === 'defaultYellow')
+            this.renderer.setStyle(this.selector.nativeElement, 'background', '#fac656');
+        else this.renderer.setStyle(this.selector.nativeElement, 'background', this.selectorColor);
     }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['selectorColor'])
+            this.renderer.setStyle(this.selector.nativeElement, 'background', this.selectorColor);
+    }
+    constructor(public el: ElementRef, private renderer: Renderer2, private zone: NgZone) { }
 
 }

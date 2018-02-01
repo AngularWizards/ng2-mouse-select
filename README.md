@@ -4,7 +4,6 @@ Angular 2 directive for selecting multiple items with the mouse
 ## Table of contents
 <ul>
      <li><a href="#description">Description</a></li>
-     <li><a href="#issues">Issues</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#directives">Directives</a></li>
@@ -39,11 +38,6 @@ This library has following features:
 ```bash
 $ npm install ng2-mouse-select
 ```
-
-## Issues
-
-Versions before 0.4.1 did not work in IE.
-
 
 ## Usage
 
