@@ -1,5 +1,5 @@
 # ng2-mouse-select
-Angular 2 directive for selecting multiple items with the mouse
+Angular 2 directive for selecting multiple items with the mouse.
 
 ## Table of contents
 <ul>
