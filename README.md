@@ -58,7 +58,7 @@ import { SelectableModule } from 'ng2-mouse-select';
 ```xml
 <!-- You can now use your library component in some.component.html -->
 <!-- Example: -->
- <div app-selectFrame [selectorColor]="#CC0000"
+ <div app-selectFrame [selectorColor]="'#CC0000'"
          [ensureSame]="['property1','property2']" 
          [clearOnUnselected]="false"
          [filter]="{ allowSelectElements: true, thisElement: true }" 
@@ -67,7 +67,7 @@ import { SelectableModule } from 'ng2-mouse-select';
 <div appAllowSelect>
 ....
  <tr some-component [someClass]="someClass" 
-     selectable [selectScope]="something"
+     selectable [selectScope]="'someScope'"
      [select]="{'property1':someClass.data1,'property2':someClass.data2}">
   </tr>
 ....
