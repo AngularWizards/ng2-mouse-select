@@ -35,7 +35,6 @@ dist/*
 .playground
 /playground
 /gulpfile.js
-/.travis.yml
 /.yo-rc.json
 /bs-config.json
 /tools
