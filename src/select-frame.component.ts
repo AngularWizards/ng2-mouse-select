@@ -53,10 +53,11 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
     @HostListener('window:mousedown', ['$event'])
     private onMouseDown(ev: MouseEvent): boolean {
         if (ev.which !== 1) return;
+        ev.stopPropagation();
         if (ev.ctrlKey)
-            return this.tryContinuingSelection(ev);
+            return this.determineTypeOfContinuation(ev);
         else
-            return this.startSelection(ev)
+            return this.startSelection(ev);
 
     }
 
@@ -264,14 +265,15 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         ev.stopPropagation();
         return false;
     }
-    private tryContinuingSelection(ev: MouseEvent): boolean {
+    private determineTypeOfContinuation(ev: MouseEvent): boolean {
         this.prepareContinuationOfSelection(ev);
         if (Object.keys(this.tempData).length === 0) {
+            // nothing was selected till now
             return this.startSelection(ev);
         }
         const selectedElement = this.getSelectedElement(ev);
         if (selectedElement >= 0) {
-            return this.selectThisElement(ev, selectedElement);
+            return this.toggleThisElement(ev, selectedElement);
         }
         return this.doContinuationOfSelection(ev);
     }
@@ -280,18 +282,11 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         this.selectableDirectives.map(x => x.saveSelected());
     }
     // todo: refactoring!
-    private selectThisElement(ev: MouseEvent, index: number): boolean {
-        const directives = [];
-        directives.push(this.selectableDirectives.toArray()[index]);
-        const filter = [];
-        let scope = Object.keys(this.tempData)[0];
-        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
-        this.ensureSame.forEach((x) => {
-            filter[x] = filterData[x];
-        });
-        scope = (+scope === 0) ? null : scope;
-        const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
-        directives.map(x => x.select(frame, filter, scope));
+    private toggleThisElement(ev: MouseEvent, index: number): boolean {
+        const { filter, scope } = this.getFilterAndScope();
+        this.selectableDirectives.toArray()[index].toggle(filter, scope);
+        this.tempData = this.getSelectedData();
+        this.data.emit(this.tempData);
         ev.stopPropagation();
         return false;
     }
@@ -325,7 +320,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
                 }
             });
     }
-    determineSelectedContinuation(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
+    private determineSelectedContinuation(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
         this.filterComponents(frame, directives, true);
     }
     private getSelectedData(): Array<any> {
@@ -341,16 +336,11 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
                     returnData.push(data);
             }
         });
+        console.log(returnData);
         return returnData;
     }
     private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>, continuation?: boolean): void {
-        const filter = [];
-        let scope = Object.keys(this.tempData)[0];
-        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
-        this.ensureSame.forEach((x) => {
-            filter[x] = filterData[x];
-        });
-        scope = (+scope === 0) ? null : scope;
+        const { filter, scope } = this.getFilterAndScope();
         this.selectableDirectives.map(x => x.select(frame, filter, scope, continuation));
     }
 
@@ -381,7 +371,16 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
             result = result || (element === this.el.nativeElement);
         return result;
     }
-
+    private getFilterAndScope(): { filter: Array<any>, scope: string } {
+        const filter = [];
+        let scope = Object.keys(this.tempData)[0];
+        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
+        this.ensureSame.forEach((x) => {
+            filter[x] = filterData[x];
+        });
+        scope = (+scope === 0) ? null : scope;
+        return { filter: filter, scope: scope };
+    }
     //#endregion selection
 
     ngAfterViewInit(): void {

@@ -68,6 +68,16 @@ export class SelectableDirective {
     public IsSelected(): boolean {
         return this.selected;
     }
+    public toggle(filter?: Array<any>, scope?: string, continuation?: boolean): void {
+        if (!this.passedScope(scope)) return;
+        if (!this.passedFilter(filter)) return;
+        if
+        (this.selected)
+            return this.processUnSelect(this.selectedClass);
+        else {
+            return this.processSelect(this.selectedClass);
+        }
+    }
     public select(selectFrame: ISelectFrame, filter?: Array<any>, scope?: string, continuation?: boolean): void {
         if (!continuation) return this.processNewSelection(selectFrame, filter, scope);
         if (!this.passedScope(scope)) return;

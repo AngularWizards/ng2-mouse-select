@@ -22,6 +22,8 @@ This library has following features:
 - Preserves selection till clicked away from the `selectable` items.
   If `clearOnUnselected` option is used, selection is also canceled when clicking on previously unselected, but also `selectable` items.
 
+- With **cmd** (ctrl) button you can **continue selection** or selectively select/unselect items one-by-one to/from existing selection.
+
 - With the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements will the selection be started. (Useful for enabling other directives on items that need other behaviour, like drag&drop).
   
 - As of version 0.4, <a href="#scoping">scoping</a> is supported. In this case, only items with the scope of the first selected item get in the selection.
@@ -29,6 +31,8 @@ This library has following features:
 - Able to ensure sameness. If `ensureSame` is used, only items with the same properties and corresponding values as those from the first selected item get in the selection.
 
 - Able to change color of the selector frame dynamically.
+
+
 
 
 ## Installation
