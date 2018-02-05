@@ -21,6 +21,7 @@ export class SelectableDirective {
     private dimensions: ISelectFrame;
     private _data: any;
     private selected: boolean;
+    private savedSelected: boolean;
     @Input() selectedClass = 'selected';
     @Input() selectScope = '';
 
@@ -61,11 +62,27 @@ export class SelectableDirective {
         if (!this.selected) return null;
         return this.getData();
     }
-    private getData(intern?: boolean): any {
-        if (this.selectScope === '' || intern) return JSON.parse(this.data);
-        return { scope: this.selectScope, data: JSON.parse(this.data) };
+    public saveSelected(): void {
+        this.savedSelected = this.selected;
     }
-    public select(selectFrame: ISelectFrame, filter?: Array<any>, scope?: string): void {
+    public IsSelected(): boolean {
+        return this.selected;
+    }
+    public select(selectFrame: ISelectFrame, filter?: Array<any>, scope?: string, continuation?: boolean): void {
+        if (!continuation) return this.processNewSelection(selectFrame, filter, scope);
+        if (!this.passedScope(scope)) return;
+        if (!this.passedFilter(filter)) return;
+        if
+        (
+            (this.dimensions.left > selectFrame.right) ||
+            (this.dimensions.top > selectFrame.bottom) ||
+            (this.dimensions.right < selectFrame.left) ||
+            (this.dimensions.bottom < selectFrame.top)
+        )
+            return this.processUnSelect(this.selectedClass, continuation);
+        return this.processSelect(this.selectedClass);
+    }
+    private processNewSelection(selectFrame: ISelectFrame, filter?: Array<any>, scope?: string): void {
         if (selectFrame == null) return this.processUnSelect(this.selectedClass);
         if (!this.passedScope(scope)) return this.processUnSelect(this.selectedClass);
         if (!this.passedFilter(filter)) return this.processUnSelect(this.selectedClass);
@@ -79,14 +96,14 @@ export class SelectableDirective {
             return this.processUnSelect(this.selectedClass);
         return this.processSelect(this.selectedClass);
     }
-
     private processSelect(className: string): any {
         this.selected = true;
         this.addElementClass(className);
     }
-    private processUnSelect(className: string): any {
-        this.selected = false;
-        this.removeElementClass(className);
+    private processUnSelect(className: string, continuation?: boolean): any {
+        this.selected = (continuation) ? this.savedSelected : false;
+        if (!this.selected)
+            this.removeElementClass(className);
     }
     private passedFilter(filter?: Array<any>): boolean {
         if (!filter) return true;
@@ -98,9 +115,13 @@ export class SelectableDirective {
 
         return passed;
     }
-    passedScope(scope?: string): any {
+    private passedScope(scope?: string): any {
         if (!scope) return true;
         return (scope === this.selectScope);
+    }
+    private getData(intern?: boolean): any {
+        if (this.selectScope === '' || intern) return JSON.parse(this.data);
+        return { scope: this.selectScope, data: JSON.parse(this.data) };
     }
     constructor(private el: ElementRef, private renderer: Renderer2) { }
 }

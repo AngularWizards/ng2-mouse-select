@@ -53,8 +53,11 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
     @HostListener('window:mousedown', ['$event'])
     private onMouseDown(ev: MouseEvent): boolean {
         if (ev.which !== 1) return;
-        this.prepareStartSelection(ev);
-        return this.StartSelection(ev);
+        if (ev.ctrlKey)
+            return this.tryContinuingSelection(ev);
+        else
+            return this.startSelection(ev)
+
     }
 
     private onMouseUp(ev: MouseEvent): boolean {
@@ -73,6 +76,20 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
         this.drawRectangle(this.getFrameRelativeToParent(frame, this.parent));
         this.determineSelected(frame, this.selectableDirectives.toArray());
+    }
+    private onMouseMoveContinue(ev: MouseEvent): void {
+        if (!this.mouseDown) return;
+        this.refreshMoveCoordinates(ev);
+        const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
+        this.drawRectangle(this.getFrameRelativeToParent(frame, this.parent));
+        this.determineSelectedContinuation(frame, this.selectableDirectives.toArray());
+    }
+    private onScrollContinue(ev: Event): void {
+        if (!this.mouseDown) return;
+        this.refreshScrollCoordinates();
+        const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
+        this.drawRectangle(this.getFrameRelativeToParent(frame, this.parent));
+        this.determineSelectedContinuation(frame, this.selectableDirectives.toArray());
     }
     private onScroll(ev: Event) {
         if (!this.mouseDown) return;
@@ -108,6 +125,14 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         this.zone.runOutsideAngular(() => {
             this.scrollListener = this.renderer.listen(window, 'scroll', (scrollEvent: any) => this.onScroll(scrollEvent));
             this.mouseMoveListener = this.renderer.listen(document, 'mousemove', (dragEvent: MouseEvent) => this.onMouseMove(dragEvent));
+            this.mouseUpListener = this.renderer.listen(document, 'mouseup', (mouseUpEvent: MouseEvent) => this.onMouseUp(mouseUpEvent));
+        });
+    }
+    private startContinuationListeners() {
+        this.zone.runOutsideAngular(() => {
+            this.scrollListener = this.renderer.listen(window, 'scroll', (scrollEvent: any) => this.onScrollContinue(scrollEvent));
+            this.mouseMoveListener =
+                this.renderer.listen(document, 'mousemove', (dragEvent: MouseEvent) => this.onMouseMoveContinue(dragEvent));
             this.mouseUpListener = this.renderer.listen(document, 'mouseup', (mouseUpEvent: MouseEvent) => this.onMouseUp(mouseUpEvent));
         });
     }
@@ -200,23 +225,80 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
 
     //#region selection
 
-    private prepareStartSelection(ev: MouseEvent) {
+
+    private startSelection(ev: MouseEvent): boolean {
+        this.prepareStartOfSelection(ev);
+        return this.doStartOfSelection(ev);
+    }
+
+    private prepareStartOfSelection(ev: MouseEvent): void {
         // actions indepentent of allowing selection
         this.setStartCoordinates(ev);
         const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
         this.resetComponents(frame, this.selectableDirectives.toArray());
         this.resetListeners();
     }
-    private StartSelection(ev: MouseEvent): boolean {
+    private prepareContinuationOfSelection(ev: MouseEvent): void {
+        this.setStartCoordinates(ev);
+        this.saveSelected();
+        this.resetListeners();
+    }
+    private doStartOfSelection(ev: MouseEvent): boolean {
         // do nothing if start selection filter active
         // and element is not a member of the filter elements
-        if (!this.allowSelectionOnElements(ev)) return;
+        if (!this.allowSelectionOnElements(ev)) return true;
         // new selection - clear tmpData
         this.tempData = [];
         this.mouseDown = true;
         this.startListeners();
         ev.stopPropagation();
         return false;
+    }
+    private doContinuationOfSelection(ev: MouseEvent): boolean {
+        // do nothing if start selection filter active
+        // and element is not a member of the filter elements
+        if (!this.allowSelectionOnElements(ev)) return true;
+        // new selection - clear tmpData
+        this.mouseDown = true;
+        this.startContinuationListeners();
+        ev.stopPropagation();
+        return false;
+    }
+    private tryContinuingSelection(ev: MouseEvent): boolean {
+        this.prepareContinuationOfSelection(ev);
+        if (Object.keys(this.tempData).length === 0) {
+            return this.startSelection(ev);
+        }
+        const selectedElement = this.getSelectedElement(ev);
+        if (selectedElement >= 0) {
+            return this.selectThisElement(ev, selectedElement);
+        }
+        return this.doContinuationOfSelection(ev);
+    }
+
+    private saveSelected() {
+        this.selectableDirectives.map(x => x.saveSelected());
+    }
+    // todo: refactoring!
+    private selectThisElement(ev: MouseEvent, index: number): boolean {
+        const directives = [];
+        directives.push(this.selectableDirectives.toArray()[index]);
+        const filter = [];
+        let scope = Object.keys(this.tempData)[0];
+        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
+        this.ensureSame.forEach((x) => {
+            filter[x] = filterData[x];
+        });
+        scope = (+scope === 0) ? null : scope;
+        const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
+        directives.map(x => x.select(frame, filter, scope));
+        ev.stopPropagation();
+        return false;
+    }
+
+    private getSelectedElement(ev: MouseEvent): number {
+        const frame = this.getSelectorFrameCoordinates(this.selectionFrameCoordinates);
+        return this.selectableDirectives.map(x => x.clicked(frame)).findIndex(member => member === true);
     }
 
     private setStartCoordinates(ev: MouseEvent): void {
@@ -243,7 +325,9 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
                 }
             });
     }
-
+    determineSelectedContinuation(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
+        this.filterComponents(frame, directives, true);
+    }
     private getSelectedData(): Array<any> {
         const returnData = [];
         this.selectableDirectives.map(x => {
@@ -259,7 +343,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         });
         return returnData;
     }
-    private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
+    private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>, continuation?: boolean): void {
         const filter = [];
         let scope = Object.keys(this.tempData)[0];
         const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
@@ -267,7 +351,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
             filter[x] = filterData[x];
         });
         scope = (+scope === 0) ? null : scope;
-        this.selectableDirectives.map(x => x.select(frame, filter, scope));
+        this.selectableDirectives.map(x => x.select(frame, filter, scope, continuation));
     }
 
     private selectComponents(frame: ISelectFrame, directives: Array<SelectableDirective>): void {
