@@ -336,7 +336,6 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
                     returnData.push(data);
             }
         });
-        console.log(returnData);
         return returnData;
     }
     private filterComponents(frame: ISelectFrame, directives: Array<SelectableDirective>, continuation?: boolean): void {
