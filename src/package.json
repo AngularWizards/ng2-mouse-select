@@ -1,9 +1,9 @@
 {
   "name": "ng2-mouse-select",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MiroKov/ng2-mouse-select.git"
+    "url": "https://github.com/AngularWizards/ng2-mouse-select.git"
   },
   "author": {
     "name": "Miroslav Kovac",
@@ -18,11 +18,11 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/MiroKov/ng2-mouse-select/blob/master/LICENSE"
+      "url": "https://github.com/AngularWizards/ng2-mouse-select/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/MiroKov/ng2-mouse-select.git/issues"
+    "url": "https://github.com/AngularWizards/ng2-mouse-select.git/issues"
   },
   "main": "ng2-mouse-select.umd.js",
   "module": "ng2-mouse-select.js",
