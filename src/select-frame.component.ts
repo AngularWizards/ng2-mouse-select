@@ -129,6 +129,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
             this.mouseUpListener = this.renderer.listen(document, 'mouseup', (mouseUpEvent: MouseEvent) => this.onMouseUp(mouseUpEvent));
         });
     }
+
     private startContinuationListeners() {
         this.zone.runOutsideAngular(() => {
             this.scrollListener = this.renderer.listen(window, 'scroll', (scrollEvent: any) => this.onScrollContinue(scrollEvent));
@@ -267,13 +268,13 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
     }
     private determineTypeOfContinuation(ev: MouseEvent): boolean {
         this.prepareContinuationOfSelection(ev);
-        if (Object.keys(this.tempData).length === 0) {
-            // nothing was selected till now
-            return this.startSelection(ev);
-        }
         const selectedElement = this.getSelectedElement(ev);
         if (selectedElement >= 0) {
             return this.toggleThisElement(ev, selectedElement);
+        }
+        if (Object.keys(this.tempData).length === 0) {
+            // nothing was selected till now
+            return this.startSelection(ev);
         }
         return this.doContinuationOfSelection(ev);
     }
@@ -284,6 +285,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
     // todo: refactoring!
     private toggleThisElement(ev: MouseEvent, index: number): boolean {
         const { filter, scope } = this.getFilterAndScope();
+
         this.selectableDirectives.toArray()[index].toggle(filter, scope);
         this.tempData = this.getSelectedData();
         this.data.emit(this.tempData);
@@ -371,14 +373,18 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         return result;
     }
     private getFilterAndScope(): { filter: Array<any>, scope: string } {
-        const filter = [];
-        let scope = Object.keys(this.tempData)[0];
-        const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
-        this.ensureSame.forEach((x) => {
-            filter[x] = filterData[x];
-        });
-        scope = (+scope === 0) ? null : scope;
-        return { filter: filter, scope: scope };
+        if (Object.keys(this.tempData).length > 0) {
+            const filter = [];
+            let scope = Object.keys(this.tempData)[0];
+            const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
+            this.ensureSame.forEach((x) => {
+                filter[x] = filterData[x];
+            });
+            scope = (+scope === 0) ? null : scope;
+            return { filter: filter, scope: scope };
+        } else {
+            return { filter: null, scope: null };
+        }
     }
     //#endregion selection
 
