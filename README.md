@@ -1,4 +1,4 @@
-# ng2-mouse-select
+# ng2-mouse-select  [![npm version](https://badge.fury.io/js/ng2-mouse-select.svg)](https://badge.fury.io/js/ng2-mouse-select)  [![Build Status](https://travis-ci.org/AngularWizards/ng2-mouse-select.svg?branch=master)](https://travis-ci.org/AngularWizards/ng2-mouse-select)
 Angular 2 directive for selecting multiple items with the mouse.
 
 ## Table of contents
