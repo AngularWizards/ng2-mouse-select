@@ -22,7 +22,7 @@ This library has following features:
 - Preserves selection till clicked away from the `selectable` items.
   If `clearOnUnselected` option is used, selection is also canceled when clicking on previously unselected, but also `selectable` items.
 
-- With **cmd** (ctrl) button you can **continue selection** or selectively select/unselect items one-by-one to/from existing selection.
+- With **cmd** (ctrl) button you can either **continue adding elements to previous selection**, or **selectively add/remove item** to new/existing selection.
 
 - With the configuration of the `filter` you can determine on which elements will the directive be active, that is, on which elements will the selection be started. (Useful for enabling other directives on items that need other behaviour, like drag&drop).
   
