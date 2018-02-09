@@ -1,10 +1,9 @@
 import {
-    Component, ElementRef, Renderer2, QueryList, ContentChildren,
+    Component, ElementRef, Renderer2, QueryList, ContentChildren, AfterViewInit, OnChanges,
     Input, HostListener, HostBinding, Output, EventEmitter, NgZone, ViewChild, SimpleChanges
 } from '@angular/core';
 import { ISelectionCoordinates, ISelectFrame } from './ISelectorFrame';
 import { SelectableDirective } from './selectable.directive';
-import { AfterViewInit, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 /**
  * @description
  * Component which defines frame for the selection area.
