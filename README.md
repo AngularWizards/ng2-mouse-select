@@ -150,4 +150,4 @@ data=ev[pallets];
 
 ## License
 
-MIT © [Miroslav Kovac](mailto:miro1.kovac@gmail.com)
+MIT © [Angular Wizards](https://github.com/AngularWizards/ng2-mouse-select/blob/master/LICENSE)

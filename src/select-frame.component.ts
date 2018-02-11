@@ -325,7 +325,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         this.filterComponents(frame, directives, true);
     }
     private getSelectedData(): Array<any> {
-        const returnData = [];
+        const returnData: Array<any> = [];
         this.selectableDirectives.map(x => {
             const data = x.getDataIfSelected();
             if (data) {
@@ -373,7 +373,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
     }
     private getFilterAndScope(): { filter: Array<any>, scope: string } {
         if (Object.keys(this.tempData).length > 0) {
-            const filter = [];
+            const filter: Array<any> = [];
             let scope = Object.keys(this.tempData)[0];
             const filterData = (+scope === 0) ? this.tempData[0] : this.tempData[scope][0];
             this.ensureSame.forEach((x) => {

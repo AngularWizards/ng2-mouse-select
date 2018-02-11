@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "allowJs": true,
+    "outDir": "./playground/built",
+    "baseUrl": "./playground",
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "rootDir": "./src",
+    "rootDir": "./playground",
     "lib": [
       "es2015",
       "dom"
     ],
     "target": "es6",
     "skipLibCheck": true,
-    "types": []
-  }
+    "types": ["jasmine"]
+  },
+  "include": [
+    "./playground/**/*"
+  ],
+  "exclude": [
+   
+  ]
 }
