@@ -5,17 +5,15 @@
     },
     "apps": [
       {
-        "root": "playground",
-        "outDir": "dist",
+        "root": "./",
+        "outDir": "built",
         "assets": [
-          "assets",
-          "favicon.ico"
         ],
         "index": "index.html",
-        "main": "index.ts",
-        "test": "./test.ts",
-        "tsconfig": "./tsconfig.json",
-        "testTsconfig": "tsconfig.spec.json",
+        "main": "playground/index.ts",
+        "test": "playground/test.js",
+        "tsconfig": "tsconfig.json",
+        "testTsconfig": "playground/tsconfig.spec.json",
         "styles": [
         ],
         "scripts": [
@@ -24,7 +22,7 @@
     ],
     "test": {
       "karma": {
-        "config": "./karma.conf.js"
+        "config": "karma.conf.js"
       }
     },
     "defaults": {
