@@ -1,6 +1,6 @@
 import {
     Component, ElementRef, Renderer2, QueryList, ContentChildren, AfterViewInit, OnChanges,
-    Input, HostListener, HostBinding, Output, EventEmitter, NgZone, ViewChild, SimpleChanges
+    Input, HostListener, HostBinding, Output, EventEmitter, NgZone, ViewChild, SimpleChanges, Inject
 } from '@angular/core';
 import { ISelectionCoordinates, ISelectFrame } from './ISelectorFrame';
 import { SelectableDirective } from './selectable.directive';
@@ -396,6 +396,7 @@ export class SelectFrameComponent implements AfterViewInit, OnChanges {
         if (changes['selectorColor'])
             this.renderer.setStyle(this.selector.nativeElement, 'background', this.selectorColor);
     }
-    constructor(public el: ElementRef, private renderer: Renderer2, private zone: NgZone) { }
+    constructor(@Inject(ElementRef) public el: ElementRef,
+        @Inject(Renderer2) private renderer: Renderer2, @Inject(NgZone) private zone: NgZone) { }
 
 }

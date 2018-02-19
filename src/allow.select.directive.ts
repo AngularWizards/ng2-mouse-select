@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Inject } from '@angular/core';
 /**
  * @description
  * directive for items inside the 'select-frame' * component.
@@ -20,7 +20,7 @@ import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
 export class AllowSelectDirective {
 
-    constructor(private el: ElementRef, private renderer: Renderer2) {
+    constructor(@Inject(ElementRef) private el: ElementRef, @Inject(Renderer2) private renderer: Renderer2) {
         this.renderer.setAttribute(this.el.nativeElement, 'allow-select', 'true');
     }
 }

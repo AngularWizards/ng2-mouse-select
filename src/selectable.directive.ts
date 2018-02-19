@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, Inject } from '@angular/core';
 import { ISelectFrame } from './ISelectorFrame';
 /**
  * @description
@@ -133,5 +133,5 @@ export class SelectableDirective {
         if (this.selectScope === '' || intern) return JSON.parse(this.data);
         return { scope: this.selectScope, data: JSON.parse(this.data) };
     }
-    constructor(private el: ElementRef, private renderer: Renderer2) { }
+    constructor(@Inject(ElementRef) private el: ElementRef, @Inject(Renderer2) private renderer: Renderer2) { }
 }

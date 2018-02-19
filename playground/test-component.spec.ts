@@ -11,41 +11,37 @@ describe('TestComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
-  let h1Element: HTMLElement;
+  let selectableDirectiveHTML: HTMLElement;
+  let testComponentH1Title: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, SelectFrameComponent, SelectableDirective],
+      imports: [SelectableModule],
+      declarations: [TestComponent],
       providers: [
         { provide: ComponentFixtureAutoDetect, useValue: true }
       ]
-    });
+    })
+      .compileComponents();
+  });
+  beforeEach(() => {
+
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
-    htmlElement = debugElement.query(By.directive(SelectableDirective)).nativeElement;
-    h1Element = debugElement.query(By.css('h1')).nativeElement;
+    selectableDirectiveHTML = debugElement.query(By.directive(SelectableDirective)).nativeElement;
+    testComponentH1Title = debugElement.query(By.css('h1')).nativeElement;
   });
   it('component has title', () => {
-    // fixture.detectChanges();
-    expect(h1Element.title).toEqual('Testing the component!');
+     fixture.detectChanges();
+    expect(testComponentH1Title.innerHTML).toEqual('Testing the component!');
   });
   it('component has directive', () => {
-    // fixture.detectChanges();
-    expect(htmlElement).toBeDefined('no selectable directives found!');
+     fixture.detectChanges();
+    expect(selectableDirectiveHTML).toBeDefined('selectable directive found!');
   });
+
 
 
 });
 
-
-
-
-
-
-describe('Something abstract', () => {
-  describe('Something specific', () => {
-    it('Expects truth to be true', () => expect(true).toBe(true, 'Expectation failed'));
-  });
-});

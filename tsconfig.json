@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowJs": true,
     "outDir": "./playground",
     "baseUrl": "./",
-    "experimentalDecorators": true,
     "moduleResolution": "node",
     "rootDir": "./",
     "lib": [

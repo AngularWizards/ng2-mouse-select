@@ -13,6 +13,7 @@ module.exports = function (config) {
         require('karma-jasmine-html-reporter'),
         require('karma-coverage-istanbul-reporter'),
         require('@angular/cli/plugins/karma'),
+        // require('karma-requirejs'),
       ],
       files: [
         // for Travis
@@ -23,6 +24,7 @@ module.exports = function (config) {
         'node_modules/zone.js/dist/jasmine-patch.js',
         'node_modules/zone.js/dist/async-test.js',
         'node_modules/zone.js/dist/fake-async-test.js',
+        // 'node_modules/core-js/es7/reflect.js',
         // 'node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js',
         // 'node_modules/jasmine-core/lib/jasmine-core/boot.js',
 

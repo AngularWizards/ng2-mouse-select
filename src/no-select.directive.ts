@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Inject } from '@angular/core';
 /**
  * @description
  * directive for dissalowing text-selection.
@@ -15,7 +15,7 @@ import { Directive, ElementRef, Renderer2 } from '@angular/core';
 })
 
 export class NoSelectDirective {
-    constructor(private el: ElementRef, private renderer: Renderer2) {
+    constructor(@Inject(ElementRef) private el: ElementRef, @Inject(Renderer2) private renderer: Renderer2) {
         this.renderer.setStyle(this.el.nativeElement, '-webkit-user-select', 'none');
         this.renderer.setStyle(this.el.nativeElement, '-moz-user-select', '-moz-none');
         this.renderer.setStyle(this.el.nativeElement, '-ms-user-select', 'none');
