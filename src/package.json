@@ -1,13 +1,12 @@
 {
   "name": "ng2-mouse-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/AngularWizards/ng2-mouse-select.git"
   },
   "author": {
-    "name": "Miroslav Kovac",
-    "email": "miro1.kovac@gmail.com"
+    "name": "Miroslav Kovac"
   },
   "keywords": [
     "angular",
